@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const cdk = require('aws-cdk-lib');
+const cdk = require('@aws-cdk/core');
 const { DeployCdkStack } = require('../lib/deploy-cdk-stack');
 
 const app = new cdk.App();
