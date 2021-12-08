@@ -13,8 +13,8 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 
 ## End points
 
- * ` https://d8404qolqh.execute-api.ap-south-1.amazonaws.com/prod//deploy`   upload the data to the dynamodb
- * ` https://d8404qolqh.execute-api.ap-south-1.amazonaws.com/prod//get_data` get the data from the dynamodb
+ * ` https://d8404qolqh.execute-api.ap-south-1.amazonaws.com/prod/deploy`   upload the data to the dynamodb
+ * ` https://d8404qolqh.execute-api.ap-south-1.amazonaws.com/prod/get_data` get the data from the dynamodb
 
 ## Payload
 `{
