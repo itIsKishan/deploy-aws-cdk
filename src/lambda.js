@@ -1,17 +1,6 @@
 const aws = require('aws-sdk')
 const db = new aws.DynamoDB()
 
-module.exports.handler = async (event,context,callback) =>{
-    console.log('event data',event)
-    if(event.httpMethod === 'GET'){
-        console.log('get the item from the table',event.queryStringParameters.name)
-        return getData(event.queryStringParameters.name)
-    } else if(event.httpMethod === 'POST') {
-        console.log('create the item in table')
-        return putData(event.body)
-    }
-}
-
 const putData = async (body) =>{
     const {name, email} = JSON.parse(body)
     const params = {
@@ -45,7 +34,7 @@ const getData = async (name) =>{
     }
     let data 
     try{
-        data = await db.getItem(params).promise
+        data = await db.getItem(params).promise()
         let response = {
             statusCode : 200,
             body : JSON.stringify(data)
@@ -56,3 +45,15 @@ const getData = async (name) =>{
         return JSON.stringify({error : err})
     }
 }
+
+module.exports.handler = async (event,context,callback) =>{
+    console.log('event data',event)
+    if(event.httpMethod === 'GET' && event.path === '/get_data'){
+        console.log('get the item from the table',event.queryStringParameters.name)
+        return getData(event.queryStringParameters.name)
+    } else if(event.httpMethod === 'POST' && event.path === '/deploy') {
+        console.log('create the item in table')
+        return putData(event.body)
+    }
+}
+
